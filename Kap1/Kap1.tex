@@ -1,0 +1,53 @@
+\chapter{Introduction}
+With the coming of the industrial revolution, human beings started to use new machines for transport, like vehicles powered by a combustion engine. The use of this efficient and versatile machine made easier and faster the transportation of people, animals, and commodities.  More than 200 years have passed since the construction of the first automobile powered by a vapor engine. Due to the success of this machine, it has undergone many modifications and upgrades to increase its efficiency, speed, and security. However, the most important change of those vehicles is the source of energy they use. At the beginning, the source was carbon, then, they use fossils fuels like gasoline, natural gas, or diesel. In recent years, the electric vehicle was invented and manufactured in mass production. Nevertheless, the electric vehicle was invented in the 19th century, but the autonomy and energy capacity of its batteries were very poor. Eventually, over time, the capacity of batteries and efficiency of electric engines has been growing, which makes easier, efficient, and more powerful battery electric vehicles than internal combustion ones.
+\\
+
+The use of electric energy is very versatile because it can be transported and manipulated with very few losses. Besides, it can transform into multiple other energies easily, such as cinematic, thermic, mechanic, electromagnetic, among others. For these reasons, it is an advantage to use electric energy as a source of power in a vehicle, which can be equipped with many power tools that make it an electric machine with many features. One of them is the automation system, which allows it to make decisions such as acceleration, braking, and steering, thus making it an autonomous vehicle. This advantage is important because an autonomous vehicle relieves a driver of liability. First, the maneuver's decisions are made by the machine, and second, decisions are made looking for the safety of the driver and people around it.
+\\
+
+The entry of electric vehicles into the world, made it possible to develop the use of computer systems that allow vehicles to be driven autonomously without the supervision of a human being, thus making human transportation safe, efficient, and optimal. With the advent of 5G networks, it is expected that electric and autonomous vehicles can communicate with each other to achieve an individual goal in cooperation. Safe driving requires that vehicles cooperate,  considering the presence of human drivers. The human driver performs unknown strategies that hinder interaction on a road and could lead to unsafe or inappropriate maneuvers. For this reason, in this thesis, we model a human driver as a selfish and non-cooperative agent who seeks every benefit. To simplify the real-life problem, it was necessary to formulate an environment with autonomous agents that share their physical variables (velocity, acceleration, lane number, etc), but ignore the strategy of the non-cooperative agent (human driver). We intend to solve this problem using a novel method based on Nash equilibrium, which allows moving the cooperative agent to a specific objective efficiently, taking into count that each agent has different objectives and different dynamics. We also use ``Mixed Integer" variables to change the behavior of each autonomous agent in the presence of non-autonomous vehicles and ensure safety on the road. Finally, we use a technique of control MPC (Model Predictive Control) to predict the states of each agent on the whole network at a specific time in the future and decide the optimal strategy.
+
+% Automated Driving
+\section{Automated Driving}
+
+Automated driving, also known as a self-driving car is the action of a vehicle or machine to move through an environment making the right decisions to goal and objective \cite{Taeihagh_2018}, \cite{Thrun2010TowardRC}.  Automated vehicles combine techniques and hardware tools to capture, process, and control signals in their systems. Commonly, hardware tools allow it to sense the environment, e.g. GPS, lidar, radar, sonar, odometry, 3d vision, cameras, among others. Moreover, these vehicles can use multiple control hardware such as control power systems, electric engines, and some actuators, to interact with the environment \cite{8957499}, \cite{811692}.
+
+\\
+This technology has multiple applications in personal transportation, package delivery, Robo-taxis, or platoons of connected vehicles transporting loads. It is worth mentioning that the autonomous driving theory could be used in any other application that solves the problem of driving through a place, avoiding collisions, and arriving somewhere. Some of those applications could be a waiter, a dispenser pills nurse, a coffee dispenser, a tool mechanic assistant, among others \cite{8957499},\cite{peter}.
+
+
+\section{Control Strategies}
+To achieve autonomous driving in a vehicle, taking into account some signals from the environment and controlling a few control variables in its body, it is very important to use good control strategies. The use of the right strategy will depend on which strategies are being used, and in which case it could be better than any other. Moreover, the research community has developed many different strategies and control laws with good results \cite{506394}. As a result, new strategies make it easier to manage and control complex systems with better accuracy and robustness than years before. In this thesis, we will explain some control strategies used, which strategy is better for a specific job, and how it was implemented in the specific problem of automated driving.
+
+
+\subsection{Model Predictive Control}
+In recent years, one of the most popular and used control theory is Model Predictive Control (MPC). This strategy is a process control method used to optimize a cost function while satisfying a set of constraints. In other words, model predictive control appears to be an optimal solution to predict future states and applying constraints to achieve their main objective. This optimization requires advanced algorithms that solve quadratic problems with the presence of constraints \cite{GARCIA1989335}.
+
+\\
+
+In particular, MPC tries to minimize a function that represents the characteristics and objectives of the control problem. Some of them could be power consumption, efficiency, precision, and others. Furthermore, it is important to obtain a dynamic model that represents the behavior of the entire system. This dynamic model is important to predict future states and obtain the optimal control actions to achieve the global objective. Usually, it is also important to implement some constraints that contain and restrain the entire system drop under incorrect conditions \cite{MAYNE2000789}.
+\\
+\\
+
+
+% ----------------------- ADMM -------------------------
+% \subsection{Alternating Direction Method of Multipliers}
+
+
+
+
+
+
+\subsection{Data-Enabled Predictive Control}
+
+{\color{blue}
+ Data-Enabled predictive Control (DeePC) is a novel algorithm designed to solve the problem of optimal trajectory tracking for unknown systems. DeePC uses data of real-time to computes safe and optimal control policies satisfying system constraints, to manage an agent through a specific environment following a reference. The main advantage of this novel algorithm is the used of a finite number of data samples to learn a non-parametric system model. This model is used to predict future trajectories. With this knowledge, it is possible to compute an optimal control decision. In the case of nonlinear systems, is possible to regularize the DeePC algorithm to apply in these specific systems
+}
+
+\section{Game Theory}
+
+{\color{blue}
+Game theory is defined in \cite{GameTheory2} as ``The study of mathematical models of conflict and cooperation between intelligent rational decision-makers". Nevertheless, from a control perspective game theory could be seen as coordination and cooperation between multi-agents looking for a global and local benefit trying to achieve a local or global objective. This cooperative theory is based on \cite{paper_nash} where John Nash proposes a theory that tries to predict decisions of multiple agents in a specific environment (game). The main goal of game theory is to understand, predict and apply strategies that achieve the highest profits for the whole agents in the game.
+}
+
+
