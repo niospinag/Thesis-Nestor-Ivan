@@ -7,6 +7,8 @@
 \usepackage{epic}
 \usepackage{eepic}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+
 \usepackage{threeparttable}
 \usepackage{amscd}
 \usepackage{here}
@@ -17,9 +19,16 @@
 \usepackage{longtable}
 \usepackage{xcolor}
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{subcaption}
+
 \usepackage{rotating} %Para rotar texto, objetos y tablas seite. No se ve en DVI solo en PS. Seite 328 Hundebuch
                         %se usa junto con \rotate, \sidewidestable ....
 \usepackage{mathtools}
+
+\usepackage{amssymb}
+
 
 \renewcommand{\theequation}{\thechapter-\arabic{equation}}
 \renewcommand{\thefigure}{\textbf{\thechapter-\arabic{figure}}}
@@ -76,10 +85,10 @@
 
 %\cleardoublepage
 \addcontentsline{toc}{chapter}{Table List} % para que aparezca en el indice de contenidos
-\listoftables % indice de tablas
+% \listoftables % indice de tablas
 \tableofcontents
 % \include{Tab_Simbolos/TabSimbolosMSc}
-%\include{Tab_Simbolos/TabSimbolosMSc}
+\include{Tab_Simbolos/TabSimbolosMSc}
 %\include{Resumen}%\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
 \pagenumbering{arabic}
 \include{Kap1/Kap1}

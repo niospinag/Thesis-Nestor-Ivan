@@ -1,15 +1,179 @@
 \chapter{Controller Architecture}
-% {\color{red} Excelente organización ahora a rellenarlo}
+\label{controller_architecture}
+% /////////////////////// /////////////////////////////
 \section{Hight Level Control}
 
-\subsection{D-ADMM}
+
+
+% /////////////////////// reference generator/////////////////////////////
+
+\subsection{Reference generator}
+
+
+
+
+
+
+% /////////////////////// MIQP controller/////////////////////////////
+\subsection{Mixed-Integer Quadratic Problem Controller}
+
+\begin{equation}
+
+\left\{ \begin{matrix}
+\begin{aligned}
+\min_{v,a,z, l_i^l,l_i^r} \quad & J_i\left ( v_i, a_i, z_i \right )\\
+\textrm{s.t.} \quad & v_i(t+1) = v_i(t)+\tau a_i(t),\\
+  &   z_i(t+1) = z_i(t) + l_i^l(t) - l_i^r(t),   \\
+& a_i(t) \in \mathcal{A} ,  \\
+& v_i(t) \in \mathcal{V_i} ,  \\
+& a_i(z) \in \mathcal{L_i} ,  \\
+&  l_i^l(t),l_i^r(t)\in \mathbb{B},   \\
+& l_i^l(t) + l_i^r(t)  \leq 1.\\
+\end{aligned}
+\end{matrix}\right.
+
+\end{equation}
+
+\begin{equation}
+    \mathcal{V}_i(t) := [0,\overline{v_i}] \cap[v_i(t)+\tau \underline{a_i}, v_i(t)+\tau \overline{a_i} ],\\
+\end{equation}
+   
+\begin{equation}
+\mathcal{L}_i(t) := \mathcal{L} \cap[z_i(t)-l_i^r, z_i(t)+l_i^l].
+\end{equation}
+
+\subsection{}
+% ////////////////////////////////////////////////////////////////////////////
+\subsubsection{Longitudinal Constraints}
+
+
+\begin{equation}
+    [z_{i,j}(t)=0] \wedge [\left | d_{ij}(t) \right | \geq 0] \Rightarrow [\left | d_{ij}(t) \right | \geq D_i^s]
+\end{equation}
+
+$[\alpha_{i,j}(t) = 1] \Leftrightarrow [z_{i,j}(t) \leq 0] \wedge [z_{i,j}(t) \geq 0]$
+$[\beta_{i,j}(t) = 1] \Leftrightarrow  [d_{i,j}(t) \geq 0]$
+
+
+Esto se transforma en 
+
+$\alpha _{i,j}(t)[\beta_{i,j}(t)(d^s_i(t)-d_{i,j}(t)) + (1-\beta_{i,j}(t))(d^s_i(t)+d_{i,j}(t) )]$
+
+y luego se vuelve en esto
+
+$(8a)\Rightarrow \left\{\begin{matrix}
+\mathcal{S}_\leq (\eta _{i,j}(t),z_{i,j}(t),0),\\ 
+\mathcal{S}_\geq (\theta _{i,j}(t),z_{i,j}(t),0),\\ 
+\mathcal{S}_\wedge (\alpha_{i,j}(t),\eta _{i,j}(t), \theta_{i,j}(t)).
+\end{matrix}\right.$
+
+$(8b)\Rightarrow \mathcal{S}_\geq (\beta_{i,j}(t),d_{i,j}(t),0).$
+
+$\mathcal{S}_\wedge (\xi_{i,j}(t),\alpha_{i,j}(t),\beta_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (f_{i,j}(t),d_{i,j}(t),\xi_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (g_{i,j}(t),d^s_i(t),\alpha_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (h_{i,j}(t),d_{i,j}(t),\alpha_{i,j}(t)).$
+
+$-2f_{i,j}(t)+g_{i,j}(t)+h_{i,j}(t) \leq 0.$
+
+% ////////////////////////////////////////////////////////////////////////////
+\subsubsection{Longitudinal Constraints}
+
+\begin{equation}
+[\left |z_{i,j}(t)  \right |=1] \wedge [\left | d_{ij}(t) \right | \leq \hat{d}] \wedge \left \{ [l_i^r(t)=1] \vee[l_i^l(t)=1] \right \}\Rightarrow [z_{i,j}(t+1)-z_{i,j}(t)=0]
+\end{equation}
+
+
+$[\gamma^l _{i,j}(t) = 1] \Leftrightarrow [z_{i,j}(t) \leq 1] \wedge [z_{i,j}(t) \geq 1]$
+
+$[\gamma^r_{i,j}(t) = 1] \Leftrightarrow [z_{i,j}(t) \leq -1] \wedge [z_{i,j}(t) \geq -1]$
+
+$[\zeta_{i,j}(t) = 1] \Leftrightarrow [d_{i,j}(t) \leq \hat{d}] \wedge [d_{i,j}(t) \geq -\hat{d}]
+$
+
+$\zeta_{i,j}(t)[l^l_i(t)\gamma^l_{i,j}(t) + l^r_i(t)\gamma^r_{i,j}(t) ](z_{i,j}(t+1)-z_{i,j}(t))$
+
+
+$\mathcal{S}_\wedge (\varpi_{i,j}(t),\zeta_{i,j}(t),l^l_{i,j}(t)).$
+
+$\mathcal{S}_\wedge (\lambda_{i,j}(t),\zeta_{i,j}(t),l^r_{i,j}(t)).$
+
+
+$\mathcal{S}_\wedge (\rho _{i,j}(t),\varpi_{i,j}(t),\zeta^l_{i,j}(t)).$
+
+$\mathcal{S}_\wedge(\varrho_{i,j}(t),\lambda_{i,j}(t),\zeta^r_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (\psi_{i,j}(t),z_{i,j}(t+1),\rho_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (\phi_{i,j}(t),z_{i,j}(t+1),\varrho_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (\varphi_{i,j}(t),z_{i,j}(t),\rho_{i,j}(t)).$
+
+$\mathcal{S}_\Rightarrow (\iota_{i,j}(t),z_{i,j}(t),\varrho_{i,j}(t)).$
+
+$\left\{\begin{matrix}
+\psi_{i,j}(t) - \varphi_{i,j}(t) + \phi_{i,j}(t) - \iota_{i,j}(t) \leq 0\\ 
+\psi_{i,j}(t) - \varphi_{i,j}(t) + \phi_{i,j}(t) - \iota_{i,j}(t) \geq 0
+\end{matrix}\right.$
+
+
+\begin{equation}
+
+\left\{\begin{matrix}
+\begin{aligned}
+\min_{v,a,z, l_i^l,l_i^r} \quad & J_i\left ( v_i, a_i, z_i \right )\\
+\textrm{s.t.} \quad & v_i(t+1) = v_i(t)+\tau a_i(t),\\
+  &   z_i(t+1) = z_i(t) + l_i^l(t) - l_i^r(t),   \\
+& a_i(t) \in \mathcal{A} ,  \\
+& v_i(t) \in \mathcal{V_i} ,  \\
+& a_i(z) \in \mathcal{L_i} ,  \\
+&  l_i^l(t),l_i^r(t)\in \mathbb{B},   \\
+& l_i^l(t) + l_i^r(t)  \leq 1.\\
+\end{aligned}
+\end{matrix}\right.
+
+\end{equation}
+
+
+% $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ table 1
+explicar que $M:=Max_{x \in X}f(x)$,$m:=Min_{x \in X}$
+
+
+\begin{table}[]
+\caption{Basic Logical Implications}
+\begin{tabular}{lll}
+
+\hline
+\textbf{Name}                                        & \textbf{Logical Implication}                                         & \textbf{System Inequalities}                                                                                   \\[0.5ex]\hline
+
+$\mathcal{S}_\geq (\eta ,f(x),c)$           & $[\eta =1] \Leftrightarrow [f(x)\geq c]$                    & $\left\{\begin{matrix} (c-m)\eta \leq f(x)-m\\ (M-c+\epsilon)\eta \geq f(x)-c+\epsilon \end{matrix}\right.$           \\[4ex]\hline
+$\mathcal{S}_\leq(\eta ,f(x),c)$            & $[\eta =1] \Leftrightarrow [f(x)\leq c]$                    & $\left\{\begin{matrix} (M-c)\eta \leq M-f(x)\\ (c+\epsilon-m)\eta \geq \epsilon +c-f(x) \end{matrix}\right.$          \\[4ex]\hline
+$\mathcal{S}_\wedge(\eta ,\alpha ,\gamma )$ & $[\eta =1] \Leftrightarrow [\alpha =1] \wedge [\gamma = 1]$ & $\left\{\begin{matrix} -\alpha +\eta \leq 0\\ -\gamma +\eta \leq 0\\ \alpha +\gamma -\eta \leq 1 \end{matrix}\right.$ \\[4ex]\hline
+$\mathcal{S}_\vee(\eta ,\alpha ,\gamma)$    & $[\eta =1] \Leftrightarrow [\alpha =1] \vee[\gamma = 1]$    & $\left\{\begin{matrix} \alpha -\eta \leq 0\\ \gamma -\eta \leq 0\\ -\alpha -\gamma +\eta \leq 0 \end{matrix}\right.$  \\[4ex]\hline
+$\mathcal{S}_\Rightarrow (g ,f(x) ,\eta )$  & $[\eta=0]\Rightarrow[g=0],[\eta=1]\Rightarrow [g=f(x)]$     & $\left\{\begin{matrix} m\eta \leq g\leq M\eta \\ -M(1-\eta)\leq g-f(x)\leq -m(1-\eta) \end{matrix}\right.$  
+\\[4ex]\hline
+\end{tabular}
+\end{table}
+
+
+
+% $$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+
+
 
 
 
 
 
 \section{Mid Level Control}
-\subsection{MIPG controller}
+\subsection{D-ADMM}
 
 \subsubsection{Centralize MPC}
 
