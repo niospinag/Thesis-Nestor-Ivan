@@ -1,6 +1,6 @@
 \chapter{Mathematical Background}
 
-Frequently multi-agent systems are modelled as a distributed optimization problem. Each agent looks for an optimal solution to a specific task, and it could solve it with the cooperation of their neighbours or without it. Indeed, it is essential to design and implement strategies to manage the communication and control the interconnect network optimally. This chapter presents a brief explanation of different techniques used for this purpose. Some of them are related to modelling, analyzing, and controlling the entire network of agents. The control and communications techniques are shown in-depth in chapter \ref{controller_architecture}. 
+Frequently multi-agent systems are modeled as a distributed optimization problem. Each agent looks for an optimal solution to a specific task, and it could solve it with the cooperation of its neighbors or without it. Indeed, it is essential to design and implement strategies to manage communication and control the interconnect network optimally. This chapter presents a brief explanation of different techniques used for this purpose. Some relate to modeling, analyzing, and managing the entire network of agents. The control and communications techniques are shown in-depth in chapter \ref{controller_architecture}. 
 \\
 
 % -----------------------------------------------------------------
@@ -10,7 +10,7 @@ Frequently multi-agent systems are modelled as a distributed optimization proble
 
 
 
-A graph is defined as a mathematical and graphical representation of a network. Some of the most common uses of graph representation are people's social interaction in a social network, interconnected network of robots, servers connected to the internet, cellphones connected to the telephone service and much more, Fig.  \ref{fig:Social_net}.
+A graph is defined as a mathematical and graphical representation of a network. Some of the most common uses of graph representation are people's social interaction in social networks, interconnected networks of robots, servers connected to the internet, cellphones connected to the telephone service, and much more, Fig.  \ref{fig:Social_net}.
 
 
 \begin{figure}[h]
@@ -36,7 +36,7 @@ A graph $\mathcal{G} = (\mathcal{V,E,W})$ consists of the joint of three fundame
 
 \begin{figure}[h]
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{Kap2/Graph-01.eps}
+    \includegraphics[width=0.6\textwidth]{Kap2/Graph-01.eps}
     \caption{ Graph of Network system.}
     \label{fig:Graph}
 \end{center}
@@ -44,7 +44,7 @@ A graph $\mathcal{G} = (\mathcal{V,E,W})$ consists of the joint of three fundame
 
 
 A set of vertices is a group of agents (or nodes) $v = 1,..., n$, where each node is an information source. It could be auto-generated or retransmitted by other nodes. In Fig \ref{fig:Graph} the set of vertices is $\mathcal{V} = \left\{ v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9 \right\}$.
-However, the edges (or links) are the ways the information is shared. it could be directed or undirected depending on how the information is transmitted if just a node can transmit, or transmit and receive. In the previous example, the set of edges is $ \mathcal{E} = \left\{ e_{12},e_{13},e_{24},e_{34},e_{37},e_{45},e_{47},e_{49},e_{59},e_{68},e_{76},e_{78},e_{89} \right\}$, and lastly the weight matrix is an algebraic representation of the entire interconnected system. If exist a connection between vertice I and j in the matrix, it will be 1; otherwise, it will be 0. In fig \ref{fig:Graph} the weight matrix is:
+However, the edges (or links) are how the information is shared. It could be directed or undirected depending on how the information is transmitted if just a node can transmit or transmit-receive. In the previous example, the set of edges is $ \mathcal{E} = \left\{ e_{12},e_{13},e_{24},e_{34},e_{37},e_{45},e_{47},e_{49},e_{59},e_{68},e_{76},e_{78},e_{89} \right\}$, and lastly the weight matrix is an algebraic representation of the entire interconnected system. If exist a connection between vertice I and j in the matrix, it will be 1; otherwise, it will be 0. In fig \ref{fig:Graph} the weight matrix is:
 
 
 \begin{equation*}
@@ -97,11 +97,8 @@ In addition, an adjacency matrix exists where the relationship of each node with
 \end{equation}
 
 
-
-
-
 \section*{Incidence Matrix}
-There exist direction or bi-direction graphs in their edges. If a graph exists with directed edges, it is called a digraph $\mathcal{D}$. Therefore, a digraph is described in its incidence matrix, where it represents the orientation of each edge of the graph. This information is useful to evaluate network stability and controllability. This representation is defined as:
+There are directional or bidirectional graphics on its edges. If there is a graph with directed edges, it is called a digraph $\mathcal{D}$. Therefore, a digraph is described by its incidence matrix, representing the orientation of each edge of the graph. With the previous information, it is possible to analyze factors such as stability, network controllability, communication times, and the sequence that the information follows to reach each agent. The incidence matrix is defined as:
 
 \begin{equation}
     I_{ij}(\mathcal{G}) = \left\{\begin{matrix*}[l]
@@ -111,7 +108,7 @@ There exist direction or bi-direction graphs in their edges. If a graph exists w
 \end{matrix*}\right.
 \end{equation}
 
-A graph could also have weights in its connections, representing the importance of the neighbor's information on each node. If a graph has weighted edges, it is called a weight graph. Consequently, in a weight graph, the adjacency matrix is built by the following definition:
+A graph could also have weights in its connections, representing the importance of the neighbour's information on each node. If a graph has weighted edges, it is called a weight graph. Consequently, in a weight graph, the adjacency matrix is built by the following definition:
 
 
 \begin{equation}
@@ -151,8 +148,10 @@ Laplacian matrix must be symmetric if it is a digraph or asymmetric otherwise.
 
 
 \section{Model Predictive Control}
+Model Predictive Control is a control theory used to manage some variables optimally into a function looking at a specific result. The main idea is to use a discrete model of the entire system to predict future system states. With the capability of predicting future behaviours over a finite-time prediction and control horizon $H_u$ and $H_p$, depending on different inputs. It is possible to optimize the input control to achieve an optimal solution. The process is to apply an optimal input signal to the system and recalc the next optimal step. This process is repetitive, while the system aims at the principal objective \cite{3t_sequential}. 
+\\
 
-Model Predictive Control is a control theory used to manage some variables optimally into a function looking at a specific result. The main idea is to use a discrete model of the entire system to predict future system states. With the capability of predicting future behaviors over a finite-time prediction and control horizon $H_u$ and $H_p$, depending on different inputs. It is possible to optimize the input control to achieve an optimal solution. The process is to apply an optimal input signal to the system and recalc the next optimal step. This process is repetitive while the system aims at the principal objective. In the first step, it measures the error of the actual and desired state, and also the amount of energy implemented as shown in Fig  \ref{fig:mpc1}. With this information optimize the states error and control input to achieve its objective Fig \ref{fig:mpc2}. MPC benefits are achieving the main goal while considering some constraints, the ease of design, simulation, and implementation in different systems, and the powerful way to control linear and nonlinear systems. This section describes the mathematical theory of a Model Predictive Control and its applications in the described scenario.
+The first step measures the error of the actual and desired state and the amount of energy implemented, as shown in Fig  \ref{fig:mpc1}. With this information, optimize the states error and control input to achieve its objective Fig \ref{fig:mpc2}. MPC benefits are achieving the main goal while considering some constraints, the ease of design, simulation, and implementation in different systems, and the powerful way to control linear and nonlinear systems. This section describes the mathematical theory of a Model Predictive Control and its applications in the described scenario.
 
 
 \subsection{Dynamic Prediction Model}
@@ -165,7 +164,7 @@ Considering a discrete model system (\ref{eq:mpc2}) and the observably output mo
 \end{align}
 
 The dynamic equation \ref{eq:mpc2} express the evolution  of the states $f:\mathbb{R}^n \times \mathbb{R}^m \to  \mathbb{R}^n$ over the horizon $H_u$ and the output function shows the behavior $g:\mathbb{R}^n \times \mathbb{R}^m \to  \mathbb{R}^p$ over the horizon $H_p$. 
-In order to reduce computation load and time delays, a linearized prediction model can be set up using the state evolution in \ref{eq:dynamic} . This thesis document linearized some convex models; however, all dynamic models will be explained in-depth in the next chapter. While the controller is working, this linearization is being processed in each iteration around the actual states. hence, a matrix E is added to the state matrix A and input matrix B. Future states are predicted using the following iterative substitution
+In order to reduce computation load and time delays, a linearized prediction model can be set up using the state evolution in \ref{eq:dynamic}. This thesis document linearized some convex models; however, all dynamic models will be explained in-depth in the next chapter. While the controller works, this linearization is processed in each iteration around the actual states. Hence, a matrix E is added to the state matrix A and input matrix B. Future states are predicted using the following iterative substitution:
 
 \begin{align}
 x(t+1) & = Ax(t) + Bu(t)+E \\
@@ -178,12 +177,12 @@ x(t+H_p) & = A^{H_p}x(t) + A^{H_p-1}Bu(t)+\cdots + Bu(t+H_p-1)+ A^{H_p-1}E+\cdot
 \label{eq:dynamic}
 \end{align}
 
-The resulting system is represented by matrices $A(t) \in \mathbb{R}^{n \times n}, B(t) \in \mathbb{R}^{n \times m}, C(t) \in \mathbb{R}^{p \times n} $ and $E(t) \in \mathbb{R}^{n}$ after linearization. This predicted linear model is used when the dynamic model, constraints, and objective function are nonlinear and the computing system has low resources. If this linearization is avoided, the calc could be slower, and the control system could be unstable
+The resulting system is represented by matrices $A(t) \in \mathbb{R}^{n \times n}, B(t) \in \mathbb{R}^{n \times m}, C(t) \in \mathbb{R}^{p \times n} $ and $E(t) \in \mathbb{R}^{n}$ after linearization. The previous predicted linear model is used when the dynamic model, constraints, and objective function are nonlinear and the computing system has low resources. If this linearization is avoided, the calc could be slower, and the control system could be unstable.
 
 
 \begin{figure}[H]
 \begin{center}
-    \includegraphics[width=0.57\textwidth]{Kap2/mpc1.png}
+    \includegraphics[width=0.6\textwidth]{Kap2/mpc1.png}
     \caption{Control and state signals, First iteration.} 
     \label{fig:mpc1}
 \end{center}
@@ -191,7 +190,7 @@ The resulting system is represented by matrices $A(t) \in \mathbb{R}^{n \times n
 
 \begin{figure}[H]
 \begin{center}
-    \includegraphics[width=0.57\textwidth]{Kap2/mpc2.png}
+    \includegraphics[width=0.6\textwidth]{Kap2/mpc2.png}
     \caption{Control and state signals, Second iteration.}
     \label{fig:mpc2}
 \end{center}
@@ -202,7 +201,7 @@ The resulting system is represented by matrices $A(t) \in \mathbb{R}^{n \times n
 
 \subsection{Objective Function}
 
-The objective function is the principal function representing the controller's aim needs to be achieved. This function is also called the cost function. Generally, it is divided into two parts: the \textit{Running cost} and \textit{Terminal costs}. The running cost penalizes the difference between the actual and desired states and control inputs. It allows for tracking a reference and optimizing the consumption of energy. The latter penalizes the weighted difference between the final predicted and the final reference step $\tilde{x}(H_p)$. The objective function is defined as:
+The objective function is the principal function representing the controller's aim that needs to be achieved. This function is also called the cost function. Generally, it is divided into two parts: the \textit{Running cost} and \textit{Terminal costs}. The running cost penalizes the difference between the actual and desired states and control inputs. It allows for tracking a reference and optimizing the consumption of energy. The latter penalizes the weighted difference between the final predicted and the final reference step $\tilde{x}(H_p)$. The objective function is defined as:
 
 \begin{equation}
     V(\tilde{x},\tilde{u})= \underbrace{\sum_{k=1}^{H_p-1} \tilde{x}(k)^T Q_i \tilde{x}(k) +\sum_{k=1}^{H_u-1} \tilde{u}(k)^T R_i \tilde{u}(k)}_\text{Running cost} + \underbrace{\tilde{x}(H_p)^T P \tilde{x}(H_p)}_\text{Terminal cost}.
@@ -236,18 +235,24 @@ u(H_u)-u_{ref}(H_u)
 \end{equation}
 
 
-If the MPC is linearized, the number of variables to optimize will decrease, redefining \ref{eq:V_matrix}. This function only will depend on the control inputs variables. It will convert the convex function into a Quadratic Problem (QP), where the variable to optimize is the sequence of the predicted inputs. The optimization problems become as:
+If the MPC objective function is linearized, the number of variables to optimize will decrease, redefining \ref{eq:V_matrix}. This function only will depend on the control input variables. It will convert the convex function into a Quadratic Problem (QP), where the variable to optimize is the sequence of the predicted inputs. The optimization problems become as:
 
 \begin{align}
+\begin{matrix}
 \min_{U_{H_u}} & \quad J \\
-s.t. & \ Au \le b, \\
-:= \min_{U_{H_u}} & \quad \frac{1}{2}u^T_{H_u}Pu_{H_u} =\frac{1}{2}Qu_{H_u} + r_0 \\
+s.t. & \ Au \le b. \end{matrix} 
+\qquad
+:=
+\qquad
+\begin{matrix} 
+ \min_{U_{H_u}} & \quad \frac{1}{2}u^T_{H_u}Pu_{H_u} =\frac{1}{2}Qu_{H_u} + r_0 \\
 s.t. & \ Au_{H_u} \le  b.
+\end{matrix}.
 \label{eq:min}
 \end{align}
 
 
-Each term in \ref{eq:min} is defines as \ref{eq:P_matrix}
+Each term in \ref{eq:min} is defines as follows:
 
 \begin{equation}
     u_{H_u} = \begin{bmatrix}
@@ -289,14 +294,14 @@ A^{N-1}B & \cdots & A^2B & AB & B & 0
 \subsection{Constraints}
 
 
-One of the advantages of MPC is the good handly management of constraints. the following are the benefits of the use of an MPC controller with constraints
+One of the advantages of MPC is the good handly management of constraints. The following are the benefits of the use of an MPC controller with constraints
 \begin{itemize}
     \item States, inputs, and dynamic model systems can implement constraints ensuring safety control.
     \item The use of constraints can guarantee stability and robustness to the whole system.
-    \item The MPC design could constraint the control input to ensure physical limitations on actuators. however, the output or the system also could be constrained to represent a limitation on the agent.
+    \item The MPC design could restrict the control input to ensure physical limitations on actuators. However, the output or the system also could be constrained to represent a limitation on the agent.
 \end{itemize}
-\\
-The input, state, and output variables are constrained, limiting the workspace across their prediction horizon. On the whole, constraints result are represented as:
+\newline
+The input, state, and output variables are constrained, limiting the workspace across their prediction horizon. On the whole, constraints results are represented as:
 
 \begin{align}
 x(t+k) & \in \mathcal{X} \subseteq \mathbb{R}^n, k=1,\cdots,H_p, \\
@@ -305,38 +310,48 @@ u(t+k) & \in \mathcal{U} \subseteq \mathbb{R}^m, k=0,\cdots,H_u-1.
 \end{align}
 
 
-\section{Alternate Direction Method of Multipliers}
+% \section{Alternate Direction Method of Multipliers}
 % //////////// GAME THEORY ////////////
 \section{Game Theory}
 
 \begin{figure}[H]
 \begin{center}
-    \includegraphics[width=0.57\textwidth]{Kap2/Strategy.png}
+    \includegraphics[width=0.6\textwidth]{Kap2/Strategy.png}
     \caption{Strategy in economics environment.}
     \label{fig:game_theory}
 \end{center}
 \end{figure}
 
-Game theory is a mathematical method mainly used to analyze and achieve the best decision in a multi-agent environment. It is highly used in cooperative or competitive games. Nobel price John Nash originates it in \cite{nash_novel}, which establishes the basis of this novel theory.
-Nash developed the theory to be implemented in social sciences and economics fields. The general idea in economics is to take decisions on a market, taking into account the decision of the other agents can affect the price of some commodity, and a company or agent has to take action to achieve the desired goal Fig. \ref{fig:game_theory}. Eventually, this theory has proven in fields such as engineering, computer science, philosophy, and many other fields,\cite{33t_GameTheory2}, \cite{46t_inproceedings}, obtaining good results. 
+Game theory is a mathematical method commonly used to analyze and achieve the best decision in a multi-agent environment. It is highly used in cooperative or competitive games. Nobel price John Nash originates it in \cite{nash_novel, 1t_fe}, which establishes the basis of this novel theory.
+\\
 
-From a control theory perspective is possible to interpret game theory law as a sort of "intelligent rational decision-maker" \cite{Marden2018}. In other words, game theory is the study and control of conflict and cooperation between interacting controllers, where the success depends on the agents, the preferences, and the settings.
-One setting is a zero-sum game, where more than one player exists, and the profit of one player is the detriment of the other ones. That is, the sum of the profits is zero. It is common to use this setting where the game has limited resources, and the objective of each agent is the same.
-Another setting is team games. In this setting, a group of agents looks for a cooperative strategy to achieve the global objective. Commonly, this kind of game's architecture is decentralized, and each agent has the same objective.
-The third setting is where agents do not work cooperatively. Each agent tries to achieve a local objective in an environment depending on the neighbors' decisions, but each agent has a different objective. This kind of setting is usually decentralized and non-cooperative.
+Nash developed the theory to be implemented in social sciences and economics fields. The general idea in economics is to make decisions in a market, considering that the other agents' decisions can affect the price of some commodity. A company or agent has to take action to achieve the desired goal Fig. \ref{fig:game_theory}. Eventually, this theory has been proven in engineering, computer science, philosophy, and many other fields,\cite{33t_GameTheory2, 2t_fe_cooper_game}, \cite{46t_inproceedings}, obtaining good results. 
+\\
 
+From the control theory perspective, it is possible to interpret game theory law as a sort of ''intelligent, rational decision-maker" \cite{Marden2018}. In other words, game theory is the study of conflict and cooperation between interacting controllers, where success depends on the agents, the preferences, and the settings.
+\\
 
-This section gives a simple example of a discrete matrix game before explaining the elements of a game theory in a continuous space. Finally, it is explained the third setting as potential games specifically. All information explained in this section is obtained from \cite{18t_article}, \cite{19t_article}, \cite{20t_article}, \cite{29t_book}, \cite{30t_phdthesis}, \cite{46t_inproceedings}.
+One set is a zero-sum game, where more than one player exists, and the profit of one player is to the detriment of the other. That is, the sum of the profits is zero. It is common to use this setting where the game has limited resources and the objective of each agent is the same.
+\\
 
+Another setting is team games. In this setting, a group of agents looks for a cooperative strategy to achieve the global objective. This kind of game's architecture is commonly decentralized, and each agent has the same goal.
+\\
 
+The third setting is where agents do not work cooperatively. Each agent tries to achieve a local objective in an environment depending on the neighbors' decisions, but each has a different objective. This kind of setting is usually decentralized and non-cooperative.
+\\
 
-The discrete matrix form is the most simple and powerful representation of the perspective and profit of each agent. A game written in matrix form shows all possible decisions of an agent and its corresponding utility or cost. Next is explaining one of the most popular examples of matrix games.
+This section gives a simple example of a discrete matrix game before explaining the elements of a game theory in a continuous space. Finally, it is explained the third set of potential games specifically. All information explained in this section is obtained from \cite{18t_article}, \cite{19t_article}, \cite{20t_article}, \cite{29t_book}, \cite{30t_phdthesis}, \cite{46t_inproceedings}.
+\\
+
+The discrete matrix form is the most simple and powerful representation of the perspective and profit of each agent. A game written in matrix form shows all possible decisions of an agent and its corresponding utility or cost. Next is explaining one of the most famous examples of matrix games.
+\\
 
 % ------------------------------------------------------
-\subsection{Game Theory Example: Prisoner's dilemma}
+% \subsubsection{Game Theory Example: Prisoner's dilemma}
+\begin{example}[Game Theory: Prisoner's dilemma]
 
-Two criminal of a gang has been arrested and imprisoned. Each prisoner is in separate rooms, and no one knows about his couple. Police admit they do not have enough evidence to sentence these criminals to jail. They plan an strategy to get one of them to give enough information to solve the case. The strategy is to inform them that both will be sentenced to a year of prison for the lesser charge. Simultaneously, the police offer each prisoner a bargain. If one testifies against his partner, he will go free while the other one will be three years in prison on the main charge. However, if both prisoners testify against each other, both will be sentenced to two years of prison. Each criminal (agent) has to take a decision depending on the possible decision of the other one. In matrix form, the prisoner's dilemma game is: 
-
+\textit{Two criminal of a gang has been arrested and imprisoned. Each prisoner is in a separate room, and no one knows about his couple. Police admit they do not have enough evidence to sentence these criminals to jail. They plan an strategy to get one of them to give enough information to solve the case. The strategy is to inform them that both will be sentenced to a year in prison for the lesser charge. Simultaneously, the police offer each prisoner a bargain. If one testifies against his partner, he will go free, while the other will spend three years in prison on the main charge. However, if both prisoners testify against each other, both will be sentenced to two years of prison. Each criminal (agent) has to make a decision depending on the possible decision of the other one. In matrix form, the prisoner's dilemma game is: 
+}
 
 \begin{table}[h!]
 \centering
@@ -346,19 +361,21 @@ Two criminal of a gang has been arrested and imprisoned. Each prisoner is in sep
 \textbf{A testify against his pair} & 0 years, 3 years        & 2 years, 2 years                    
 \end{tabular}
 \end{table}
+\end{example}
 
-In the previous example, it is clear that the action of each prisoner would depend on the action of the other prisoner. In a game, each agent looks at its self-interest. by this, a set of interconnected agents in a game with knowledge of other's decisions, and its self profit for each possible decision, can make optimal decisions to look its interest. Game theory helps to formulate this kind of problem in a mathematical manner.
+
+In the previous example, it is clear that the action of each prisoner would depend on the decision of the other prisoner. In a game, each agent looks at its self-interest. by this, a set of interconnected agents with knowledge of other's decisions, and its self-profit for each possible decision, can make optimal decisions to look at its interest. Game theory helps to formulate this kind of problem mathematically.
 
 
 % ------------------------------------------------------
 \subsection{Basic Concepts}
 \\
-we begin with a basic overview. Currently exist many texts explaining this in-depth, including economics (\cite{33t_GameTheory2}, \cite{5shamma_game}, \cite{6shamma_course}), computer science (\cite{7shamma_prediction}, \cite{29t_book}, \cite{9shamma_algorithmic}), and engineering (\cite{10shamma_dynamic}, \cite{11shamma_game},\cite{12shamma_noncooperative}).
-
+We begin with a basic overview. Currently exist many texts explaining this in-depth, including economics (\cite{33t_GameTheory2}, \cite{5shamma_game}, \cite{6shamma_course}), computer science (\cite{7shamma_prediction}, \cite{29t_book}, \cite{9shamma_algorithmic}), and engineering (\cite{10shamma_dynamic}, \cite{11shamma_game}, \cite{12shamma_noncooperative}).
+\\
 % ------------------------------------------------------
 \subsubsection{Game elements:}
 
-A game is fundamentally defined by three elements. First is the \textbf{set of players}, $\mathcal{P}$. For the purpose of this thesis work, we limit the discussion to a finite set of players, i.e., 
+Three elements fundamentally define a game. First is the \textbf{set of players}, $\mathcal{P}$. Due to the purpose of this thesis work, we limit the discussion to a finite set of players, i.e., 
 
 \begin{equation*}
 \mathcal{P}= \left\{ 1,2,..., N \right\}.
@@ -367,19 +384,19 @@ A game is fundamentally defined by three elements. First is the \textbf{set of p
 Second, for each player $p \in \mathcal{P}$ there is a \textbf{set of strategy}, $\mathcal{S}_p$. The strategy set is 
 
 \begin{equation*}
-\mathcal{S} = \mathcal{S}_1 \times ... \times \mathcal{S}_p.
+\mathcal{S} = \mathcal{S}_1 \times ... \times \mathcal{S}_p,
 \end{equation*}
 
 a joint strategy set $s \in \mathcal{S}$ is represented as 
 
 \begin{equation*}
-s = (s_1,s_2,...,s_p)
+s = (s_1,s_2,...,s_p).
 \end{equation*}
 
 Also, the notation $s_{-p}$ denotes the set of strategies of players $\mathcal{P} \backslash p$, i.e., players other than player $p$. Finally, for each player $p \in \matchal{P}$, there is a utility function 
 
 \begin{equation*}
-u_p : \mathcal{S} \to \mathbb{R}
+u_p : \mathcal{S} \to \mathbb{R}.
 \end{equation*}
 
 This function expresses the player's preferences over the strategies. For any two joint strategies, $s, \acute{s} \in \mathcal{S}$, player $p$ prefers $s$ to $\acute{s}$ if and only if
@@ -408,11 +425,11 @@ c_p(s) < c_p(\acute{s}).
 
 A general game can be represented by an optimization problems: 
 
-\begin{equation}
-    \forall i \in P = \left\{ 1,2,..., N \right\}, \ \min_{s_i \in \mathcal{S}_i} c_p(s_i, \textbf{s}_{-i})
-\end{equation}
+\begin{equation*}
+    \forall i \in P = \left\{ 1,2,..., N \right\}, \ \min_{s_i \in \mathcal{S}_i} c_p(s_i, \textbf{s}_{-i}).
+\end{equation*}
 
-Where the solution to this optimization problem (OP) is called Nash Equilibrium (NE). To get more knowledge of Nash equilibrium problems, we will look at games from each agent's point of view. If an agent has information about the other agents' strategy, his problem becomes simple. Specifically, he would have to solve a problem of a unique agent, where the main task is to choose the best action to get the best utility or minimum cost. However, if agents $-i$ were to commit to playing $s_{-1}$, the agent $i$ would face the problem of choosing the best response depending on the possible decision of the other agents.
+Where the solution to this optimization problem (OP) is called Nash Equilibrium (NE). We will look at games from each agent's point of view to get more knowledge of Nash equilibrium problems. If an agent has information about the other agents' strategy, his problem becomes simple. Specifically, he would have to solve a problem of a unique agent, where the main task is to choose the best action to get the best utility or minimum cost. However, if agents $-i$ were to commit to playing $s_{-1}$, the agent $i$ would face the problem of choosing the best response depending on the possible decision of the other agents.
 
 % ------------------------------------------------------
 \subsubsection{Best Response}
@@ -445,9 +462,11 @@ At Nash equilibrium, each player's strategy is optimal concerning the other play
 \end{equation*}
 
 
-\subsubsection{Example Nash equilibrium}
-Two players in a game have one decision variable $(x,y)$ respectively; that means $n_1=n_2=1$. Each decision variable $x \in \mathbb{R}$ and $y \in \mathbb{R}$ denote the player's strategies.
-The game problem is represented as 
+% \subsubsection{Example Nash equilibrium}
+\begin{example}[Nash equilibrium]
+
+\textit{Two players in a game have one decision variable $(x,y)$ respectively; that means $n_1=n_2=1$. Each decision variable $x \in \mathbb{R}$ and $y \in \mathbb{R}$ denote the player's strategies.
+The game problem is represented as} 
 
 \begin{equation}
 \begin{matrix}
@@ -456,15 +475,15 @@ s.t.: -1 \le  y \le 1 & \ & \qquad & s.t.: 0 \le  x \le 1
 \end{matrix},
 \end{equation}
 
-solving this optimization problem we get the optimal solution:
-
+\textit{solving this optimization problem we get the optimal solution:
+}
 \begin{equation}
 \begin{matrix}
 \mathcal{S}_1(x) = \left\{ \begin{array}{cl}
 1 & : \ x  < -2 \\
 -x/2 & : \ -2 \leq x \leq 2 \\
 -1 & : \ x > 2
-\end{array} \right. 
+\end{array} \right. ,
 
 & &
 
@@ -476,13 +495,118 @@ y & : \ 0 \leq y \leq 1 \\
 \end{matrix}.
 \end{equation}
 
+\textit{We can check that exist a unique fixed point of the map $\mathcal{S}_1 \times \mathcal{S}_2$. In words, a pair $(x,y)$ such that $x=\matchal{S}_1(y)$ and $y=\matchal{S}_2(x)$ is $(0,0)$ which which is the Nash Equilibrium of the above game.}
+
+\end{example}
+
+
+
+
+A Nash Equilibrium is a stable strategy where anyone agent is interested in changing its strategy due it is the best to implement.\\
+In some implementations, the change of strategy could represent a slight change in the cost function. Due to this, players might not change their strategy to the best response, holding in the actual profit. This concept allows to introduce of the idea of an $\epsilon$-NE
+
 
 
 \subsubsection{$\epsilon$-Nash Equilibrium}
+Another concept is that players might not care about changing their strategies to a better one when the amount of utility they could gain is larger than the actual one. 
 
-\subsection{Generalized Nash Equilibrium Problems}
+\begin{definition}[$\epsilon$-Nash Equilibrium]
+\textit{Fix $\epsilon >$ 0. A strategy profile $s=(s_1,...,s_n)$ is an $\epsilon$-Nash equilibrium if, for all agents i and for all strategies $\acute{s}_i \neq s_i$ , $u_i(s_i, s_{-i}) \ge u_i(\acute{s}_i, s_{-i}) -\epsilon.$ }
+\end{definition}
 
 
-\subsection{Generalized Potential Games}
 
 
+This concept has attractive properties. Due to the previous definition, $\epsilon$-Nash always exists. Note that, every Nash equilibrium is inside a $\epsilon$-Nash equilibrium region for any $\epsilon >0$. The argument that agents are indifferent to small gains is attractive and helpful. Computationally, a better and optimal solution is to search for a $\epsilon$-Nash equilibrium in a finite set of mixed-strategies space rather in an infinite continuous space.
+Usually, an algorithm starts with common $\epsilon$ and continuously adapts the parameter to smaller values until they find an acceptable $\epsilon$-Nash equilibrium. However, $\epsilon$-Nash equilibrium has some difficulties, one of these is a Nash equilibrium is always surrounded by $\epsilon$-Nash equilibrium, but the opposite is not true. In words, a given Nash equilibrium can not be close to any Nash equilibrium. \cite{29t_book}
+
+
+
+
+\subsection{Generalized Nash Equilibrium Problem}
+
+the generalized nash equilibrium concept is an extention of the clasical nash equilibrium. the GNEP assums that each player in a game $P$ has a finite set of estrategies, but this set depends on the others player's strategies.
+
+\begin{definition}[Generalized Nash Equilibrium Problem]
+If an agent's feasible set of strategies depends on the other player's strategies, it is defined as $\mathcal{X}_i(x_i) \subseteq \mathbb{R}^{n_i}$. Given the other player's strategies set, the objective of player i is to solve the main problem  \ref{eq:gnep}, choosing an optimal strategy $x_i$ to minimize it.
+
+\begin{align}
+\begin{matrix}
+    \min_{x_i \in \mathcal{X}_i(\bar{x}_{-i})} & V_i(x_i, x_{-i}) \\
+s.t. & \ x_i \in \mathcal{X}_i(x_{-i}).
+\end{matrix} \label{eq:gnep}
+\end{align}
+
+A collective strategy $\bar{X}$ is called GNE if $\forall i$, exist a $x_i$ that solves the next minimization problem,
+i,e,:
+
+\begin{equation}
+    V_v(\bar{x}_i, \bar{x}_{-i}) \le V_v(y_i, \bar{x}_{-i}), \ \forall y_i \in \mathcal{X}_i(\bar{x}_{-i}), \ \forall i \in \mathcal{V}.
+\end{equation}
+
+\end{definition}
+
+A generalized Nash Equilibrium (GNE) is a point $\bar{x}$ where each player can not decrease his objective function by changing unilaterally $\bar{x}_i$ unless the other player shifts their strategies. An example of a GNEP is the following.
+
+
+\begin{example}[Generalized Nash Equilibrium]
+There is a game with presence of two players. Each players can control one variable. \\
+the optimization problem for each players are:
+
+\begin{equation}
+    \begin{matrix}
+\min_{x^{1}} \left( x^2 -\frac{1}{2}  \right)^2 & \ & \qquad & \min_{x^2} \quad \left( x^2-1 \right)^2\\
+s.t. \quad x^1 + x^2 \le 1 & \ & \qquad & s.t. \quad x^1 + x^2 \le 1
+\end{matrix}.
+\end{equation}
+
+The optimal solution of the above problem is:
+
+\begin{equation}
+\begin{matrix}
+\mathcal{S}_1(x^2) = \left\{ \begin{array}{cl}
+\frac{1}{2}, & if \quad x^2 \le \frac{1}{2} \\
+1-x^1, & if \quad x^2 \ge \frac{1}{2}
+\end{array} \right. 
+
+& \text{and}&
+
+\mathcal{S}_2(x^1) = \left\{ \begin{array}{cl}
+1, & if \quad x^1 \le 0 \\
+1-x^1, & if \quad x^1 \ge 0 
+\end{array} \right.
+\end{matrix}.
+\end{equation}
+
+Note that the problem has infinite solutions. It is easy to check that the solution of this problem is a generalized Nash Equilibrium given by $(\alpha, 1-\alpha), \quad \forall \alpha \in [\frac{1}{2},1]$. 
+Finally, Generalized Potential game (GPG) as an instance of the GNEP class. In a GNEP, all players are minimizing the same function and where the feasible set is the product space \mathbb{R}, [\cite{20t_article}, \cite{40t_algorithms}].
+
+\end{example}
+
+
+\begin{definition}[Generalized Potential Game]
+a GNEP is generalized potential fame if exist two main conditions;
+\begin{itemize}
+    \item Exist a continuous function $P(x) : \mathbb{R}^n \to \mathbb{R}$ such that for all $x_i$, for all $i$ and for all $y_i, z_i \in \mathcal{X}_i(x_{-i})$, 
+
+    \begin{equation}
+        V_i(y_i, x_{-i})-V_i(z_i, x_{-i}) > 0,
+    \end{equation}
+implies
+    \begin{equation}
+        P(y_i, x_{-i})-P(z_i, x_{-i}) \ge \sigma (V_i(y_i, x_{-i})-V_i(z_i, x_{-i}) ).
+    \end{equation}
+
+let $\sigma : \mathbb{R}_+ \to \mathbb{R}_+$ be a forcing function $\lim_{k\to \infty} \sigma (t_k) = 0 \Rightarrow \lim_{k\to \infty} t_k = 0$.
+
+\item Exist a closet and nonempty set $\mathcal{X} \subseteq \mathbb{R}^n$  such that, for all $i = 1, ... , N$ , exist a function
+
+\begin{equation}
+    \mathcal{X}_i(x_{-i}) \equiv \left\{ x_i \in \mathcal{X}_i : (x_i, x_{-i}) \right\},
+\end{equation}
+
+where $\mathcal{X} \subseteq \mathbb{R}^{n_i}$ are closed and nonempty set such that $\prod_{i=1}^{N} \mathcal{X}_i \cap \mathcal{X} \neq \emptyset$.
+
+\end{itemize}
+
+\end{definition}

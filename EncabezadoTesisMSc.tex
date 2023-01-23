@@ -12,22 +12,28 @@
 \usepackage{threeparttable}
 \usepackage{amscd}
 \usepackage{here}
-\usepackage{graphicx}
 \usepackage{lscape}
 \usepackage{tabularx}
-\usepackage{subfigure}
+% \usepackage{subfigure}
 \usepackage{longtable}
 \usepackage{xcolor}
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+
+\usepackage{caption}% para agregar imagenes
 \usepackage{subcaption}
+\usepackage{graphicx}
+
 
 \usepackage{rotating} %Para rotar texto, objetos y tablas seite. No se ve en DVI solo en PS. Seite 328 Hundebuch
                         %se usa junto con \rotate, \sidewidestable ....
 \usepackage{mathtools}
 
 \usepackage{amssymb}
+% para agregar definisiones
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
 
 \renewcommand{\theequation}{\thechapter-\arabic{equation}}
@@ -97,9 +103,10 @@
 \include{Kap4/Kap4}
 \include{Kap5/Kap5}
 \include{Kap6/Kap6}
-\include{Kap6/Kap7}
+% \include{Kap7/Kap7}
+\include{Kap8/Kap8}
 \include{Anexos/Anexos}
-\addcontentsline{toc}{chapter}{\numberline{}Bibliograf\'{\i}a}
+\addcontentsline{toc}{chapter}{\numberline{}Bibliography}
 %\bibliographystyle{apalike}
 \bibliographystyle{plaindin_esp}
 \bibliography{BibliMSc}

@@ -8,12 +8,13 @@
 \epsfig{file=HojaTitulo/EscudoUN,scale=1}%
 \end{figure}
 \thispagestyle{empty} \vspace*{2.0cm} \textbf{\huge
-Multiagent Control of Autonomous Vehicles in Presence of Non-Cooperative Agents}\\[5.0cm]
+Multiagent Control of Autonomous Vehicles in Presence of Non-Cooperative Agents Using
+Game Theory}\\[5.0cm]
 \Large\textbf{Nestor Ivan Ospina Gaitan}\\[5.0cm]
-\small National University of Colombia\\
+\small Universidad Nacional de Colombia\\
 Engineering Faculty, Electronic and Electric Engineering Department.\\
 Bogotá, Colombia\\
-A\~{n}o 2021\\
+A\~{n}o 2022\\
 \end{center}
 
 %\newpage{\pagestyle{empty}\cleardoublepage}
@@ -26,16 +27,18 @@ Game Theory}\\[3.0cm]
 \Large\textbf{Nestor Ivan Ospina Gaitan}\\[2.0cm]
 \small Thesis presented as partial requirement for apply to the tittle of:\\
 \textbf{Master in Industrial Automation}\\[2cm]
-Director(a):\\
-Ph.D.Eduardo Alirio Mojica Nava\\[2.0cm]
+Advisor(a):\\
+Ph.D.Eduardo Alirio Mojica Nava\\
+Co-Advisor:\\
+Ph.D. Duvan Andres Tellez\\[2.0cm]
 Research Line:\\
 Control and Robotics\\
 Research Group:\\
-PAAS - Processing, Acquisition and Analysis of Signals\\[2cm]
-National University of Colombia\\
+PAAS - Processing, Acquisition and Analysis of Signals\\[1.5cm]
+Universidad Nacional de Colombia\\
 Engineering Faculty, Electronic and Electric Engineering Department\\
 Bogotá, Colombia\\
-A\~{n}o 2021\\
+A\~{n}o 2022\\
 \end{center}
 
 %\newpage{\pagestyle{empty}\cleardoublepage}
@@ -43,7 +46,7 @@ A\~{n}o 2021\\
 %\newpage
 \thispagestyle{empty} \textbf{}\normalsize
 \vspace{1.5cm}%
-\textbf{Dedication}\vspace{4.5cm}
+% \textbf{Dedication}\vspace{4.5cm}
 
 \begin{flushright}
 \begin{minipage}{8cm}
@@ -51,7 +54,7 @@ A\~{n}o 2021\\
         \small
     %    Su uso es opcional y cada autor podr\'{a} determinar la distribuci\'{o}n del texto en la p\'{a}gina, se sugiere esta presentaci\'{o}n. En ella el autor dedica su trabajo en forma especial a personas y/o entidades.\\[1.0cm]\\
     %    Por ejemplo:\\[1.0cm]
-        A mis padres\vspace{1.5cm}
+        % A mis padres\vspace{1.5cm}
         %o\\[1.0cm]
       %  La preocupaci\'{o}n por el hombre y su destino siempre debe ser el
       %  inter\'{e}s primordial de todo esfuerzo t\'{e}cnico. Nunca olvides esto
@@ -66,21 +69,51 @@ A\~{n}o 2021\\
 \thispagestyle{empty} \textbf{}\normalsize
 \vspace{1.5cm}%
 \textbf{\LARGE Acknowledgements}
-\addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}\vspace{1.5cm}
-Acknowledgements ...
+\addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}
+\vspace{2cm}
+\\
+I want to thank Professor Eduardo Alirio Mojica and Co-advisor D\'uvan Andr\'ez T\'ellez for their unconditional help all these years. To Professor Juan Calderon and Ing Gustavo Cardona for their knowledge, motivation, and support in achieving this goal. Finally, to my mother and brother for always being emotional and unconditional support.
+
 \vspace{0.5cm}
 
 %\newpage{\pagestyle{empty}\cleardoublepage}
 
 \newpage
 \textbf{\LARGE Resumen}
-\addcontentsline{toc}{chapter}{\numberline{}Resumen}\vspace{1.5cm}
-Este es el resumen.\vspace{0.5cm}
+% \addcontentsline{toc}{chapter}{\numberline{}Resumen}
+\vspace{1cm}
+\\
+Esta tesis propone una solución al problema de la conducción autónoma de vehículos en un entorno vial, concretamente en presencia de vehículos conducidos por agentes con decisiones egoístas y maniobras agresivas. El controlador trata de resolver el problema de optimización usando un Control Predictivo de Modelo. Aprovechando la técnica anterior de predicción de trayectoria, el controlador la utiliza para predecir mejor la posición de los vecinos y planificar su trayectoria. Además, el modelo predictivo puede resolver el problema de control óptimo al cumplir con las restricciones de seguridad, evitar obstáculos y lograr su objetivo principal.
+\\
+\\
+El problema de control óptimo tiene restricciones no convexas debido a las variables enteras mixtas en las que se basa. Mediante la creación de Controladores Predictivos de Modelos no lineales que puedan lidiar con el problema de las variables híbridas, se busca resolver el problema de conducción de vehículos frente a decisiones agresivas y no cooperativas para la red.
+\\
+\\
+Además, todos los agentes del sistema pueden controlarse mediante la creación de controladores locales basados en \textit{Teoría de Juegos}. Analizamos dos métodos para encontrar una solución óptima: centralizado y descentralizado. El controlador más eficaz y viable se elige después de una investigación objetiva y la comparación de todos los demás. Dado que el \textit{Control Predictivo Centralizado} proporciona la mejor solución para toda la planta, se utiliza como punto de referencia. El primer algoritmo descompuesto es MPC centralizado, en el que los subsistemas vecinos entregan la información al nodo central, calculan las nuevas rutas y transmiten en cada iteración del controlador por \textit{Modelo de Control Predictivo}. El segundo enfoque se basa en MPC descentralizado distribuido óptimo. Los coches se basan en la teoría del Juego de Potencial Generalizado en ambos casos. Cada agente resuelve su problema secuencialmente y comparte su próximo movimiento con los vecinos, buscando un equilibrio $\epsilon$-Nash. Ambos conductores pueden calcular su trayectoria de manera factible confiando en restricciones adicionales mientras evitan otros vehículos.
+\\
+\\
+Los controladores distribuidos se evalúan en tres escenarios diferentes, utilizando tres criterios: la eficiencia del controlador global, el tiempo que tarda cada controlador en encontrar una respuesta y la viabilidad del controlador con el aumento de pasos que el controlador debe predecir. El primer escenario da una idea del comportamiento del controlador frente a agentes con maniobras desconocidas; el segundo muestra el comportamiento del controlador frente a mayores restricciones y conexiones con vecinos, y el tercero prueba el controlador reduciendo sus variables ambientales.
 
-\textbf{\small Palabras clave: }.\vspace{0.5cm}
+\vspace{0.1cm}
 
+\textbf{\small Palabras clave: Teoria de juegos potenciales con enteros mixtos, control óptimo, control predictivo de modelos, conducción autónoma, red descentralizada }.\vspace{1.5cm}
 
+\newpage
  
-\textbf{\LARGE Abstract}\vspace{1.5cm}
-This is abstract.\vspace{1.5cm}
-\textbf{\small Keywords: }\vspace{0.5cm}
+\textbf{\LARGE Abstract}
+\vspace{1.3cm}
+\\
+This thesis proposes a solution to the problem of autonomous vehicle driving in a road environment, specifically in the presence of agent-driven vehicles with selfish decisions and aggressive maneuvers. The controller tries to solve the optimization problem using a \textit{Model Predictive Control}. Taking advantage of the previous technique for trajectory prediction, the controller uses this to better predict the neighbors' position and plan its trajectory. In addition, the predictive model can solve the \textit{Optimal Control Problem} by complying with security restrictions, avoiding obstacles, and achieving its primary objective.
+\\
+\\
+The \textit{Optimal Control Problem} has non-convex constraints due to its based on mixed-integer variables. By creating non-linear Model Predictive Controllers that can deal with the problem of hybrid variables, it is sought to solve the problem of driving vehicles against aggressive and non-cooperative decisions for the network.
+\\
+\\
+Furthermore, all agents in the system can be controlled by creating local controllers based on \textit{Game Theory}. We analyzed two methods to find an optimal solution: centralized and decentralized. The most effective and viable controller is chosen after objective research and comparison of all others. Since the centralized \textit{Model Predictive Control} provides the best solution for the entire plant, it is used as a benchmark. The first decomposed algorithm is centralized MPC, in which the neighboring subsystems give the information to the central node, calculate the new routes and transmit in each iteration of the \textit{Model Predictive Control}. The second approach is based on optimal distributed decentralized MPC. The cars are based on the \textit{Generalized Potential Game theory} in both cases. Each agent solves its problem sequentially and shares its next move with neighbors, looking for a $\epsilon$-Nash equilibrium. Both drivers can feasibly calculate their trajectory by relying on additional constraints while avoiding other vehicles.
+\\
+\\
+Distributed controllers are evaluated in three different scenarios, using three criteria: the efficiency of the global controller, the time it takes for each controller to find an answer, and the feasibility of the controller with the increase in steps that the controller must predict. The first scenario gives an idea of the controller's behavior against agents with unknown maneuvers; the second shows the controller's behavior against increased constraints and connections with neighbors, and the third tests the controller by reducing its environmental variables.
+
+\vspace{0.7cm}
+\textbf{\small Keywords: Generalized Mixed-Integer Potential Game, Optimal Control, Model Predictive Control, Autonomous Driving, Decentralized Network}
+\vspace{1.5cm}

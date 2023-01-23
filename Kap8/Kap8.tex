@@ -1,0 +1,25 @@
+
+\chapter{Conclusions and Recommendations}
+% \section{Conclusions}
+% Las conclusiones constituyen un cap\'{\i}tulo independiente y presentan, en forma l\'{o}gica, los resultados de la tesis  o trabajo de investigaci\'{o}n. Las conclusiones deben ser la respuesta a los objetivos o prop\'{o}sitos planteados. Se deben titular con la palabra conclusiones en el mismo formato de los t\'{\i}tulos de los cap\'{\i}tulos anteriores (T\'{\i}tulos primer nivel), precedida por el numeral correspondiente (seg\'{u}n la presente plantilla).\\
+
+\section{Conclusions}
+
+This thesis document compares the results obtained by a centralized system versus a non-decentralized system. In both cases, the complete network solves the problem of autonomous driving of multiple vehicles as a generalized mixed-integer potential game problem. Centralized networks solved with a C-MPC predictive control model can give enough results to solve the problem. Moreover, they depend on a single central node, besides being slow and requiring large amounts of computational power to solve the problem. Decentralized networks solved with a D-MPC predictive control model provide a faster and more feasible solution to the same problem without requiring a central node to solve the main problem. Those are more robust because the solution is not entrusted to a single node. It means connection problems will not break the network like they would on the C-MPC. Despite all these advantages, this method relies completely on efficient communication. The network will only be the most appropriate if the latter exists.
+\\
+
+The generalized mixed-integer potential games framework offers excellent results in solving problems with mixed-integer variables and dynamic graph topology. The use of game theory substantially improves the solution to the problem. By taking into account the decisions of others, make your own. It allows each vehicle to anticipate an unsafe manouver for the driver or his neighbors on the highway.
+\\
+
+
+The use of mixed integer variables converts the model to a simple system. The previous theory is an advantage, helping the driver to have a problem that can be solved, allowing for results that lead to safe driving for all.
+Unfortunately, it is currently impossible to implement this kind of algorithm in production vehicles due to technological shortcomings in communication and computing power.
+\\
+
+The solution proposed in this thesis is restricted only to road scenarios with vehicle detection systems. It does not consider the other scenarios and conditions a real driver may face. In addition, it assumes that the communication and identification of the vehicles around it are optimal and that there will be no delays, miscommunications, or communication problems between drivers. The calculation time of each of the controllers is different. The high-level controller was simulated in a virtual environment, and the result was used as a reference for the medium and low-level controllers.
+\\
+
+In annex \ref{AnexoA}, the images collected from the implementation of the controller proposed in this thesis in a real environment of vehicles used in mobile robotics were added. The environment was designed, programmed, and built to implement this control system efficiently. However, that doesn't limit you to other possible controllers.
+
+\section{Future Work}
+For future studies, it is recommended to investigate further solutions to the problem of low computational power that an electric vehicle can have. since large amounts of computation are required that translate to large hardware and high energy consumption. In addition, it is important to investigate in depth the use of better sensors to identify any reactive mobile agent that may appear. Finally, the stability of controllers is based on game theory, even without the presence of nonlinear constraints.
